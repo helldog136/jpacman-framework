@@ -1,7 +1,10 @@
 package nl.tudelft.jpacman.game;
 
+import nl.tudelft.jpacman.board.Direction;
 import nl.tudelft.jpacman.level.*;
 import nl.tudelft.jpacman.npc.NPC;
+import nl.tudelft.jpacman.npc.ghost.GhostColor;
+import nl.tudelft.jpacman.sprite.PacManSprites;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -25,6 +28,8 @@ public class MultiGhostPlayerGame extends Game {
      * The level of this game.
      */
     private final Level level;
+    private boolean colorsChosen = false;
+    private PacManSprites sprites = new PacManSprites();
 
     /**
      * Create a new multi players game for the provided level and players.
@@ -52,6 +57,44 @@ public class MultiGhostPlayerGame extends Game {
     private int currentHunterIndex = 0;
     private Timer hunterSwitchTimer = new Timer();
     private double[] hunterSwitchProbs = {SWITCH_PROBA_START,SWITCH_PROBA_START,SWITCH_PROBA_START,SWITCH_PROBA_START};
+
+    @Override
+    public void start(){
+        if(!colorsChosen){
+
+        }else{
+            super.start();
+        }
+    }
+
+    @Override
+    public void notifyEnter(){
+        colorsChosen = true;
+        sprites = null;
+        start();
+    }
+
+    @Override
+    public void move(Player p, Direction d){
+        if(!colorsChosen){
+            switch (d){
+                case NORTH:
+                    ((GhostPlayer)p).setColor(sprites.getGhostSprite(GhostColor.RED));
+                    break;
+                case SOUTH:
+                    ((GhostPlayer)p).setColor(sprites.getGhostSprite(GhostColor.ORANGE));
+                    break;
+                case EAST:
+                    ((GhostPlayer)p).setColor(sprites.getGhostSprite(GhostColor.CYAN));
+                    break;
+                case WEST:
+                    ((GhostPlayer)p).setColor(sprites.getGhostSprite(GhostColor.PINK));
+                    break;
+            }
+        }else{
+            super.move(p,d);
+        }
+    }
     
     @Override
     void customStart() {

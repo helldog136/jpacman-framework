@@ -23,4 +23,8 @@ public class GhostPlayer extends Player {
         super(sprites.getGhostSprite(color), sprites.getGhostDeathAnimation(color));
         originalsprites = sprites.getGhostSprite(color);
     }
+
+    public void setColor(Map<Direction,Sprite> colorSprites) {
+        this.setSprites(colorSprites);
+    }
 }

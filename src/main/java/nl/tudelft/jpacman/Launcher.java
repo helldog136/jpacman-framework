@@ -253,7 +253,9 @@ public class Launcher {
                 ret.put(KeyEvent.VK_UP, () -> game.move(players.get(0), Direction.NORTH)); // P1 gets UpDownLeftRight
                 ret.put(KeyEvent.VK_DOWN, () -> game.move(players.get(0), Direction.SOUTH));
                 ret.put(KeyEvent.VK_LEFT, () -> game.move(players.get(0), Direction.WEST));
-                ret.put(KeyEvent.VK_RIGHT, () -> game.move(players.get(0), Direction.EAST));
+				ret.put(KeyEvent.VK_RIGHT, () -> game.move(players.get(0), Direction.EAST));
+
+				ret.put(KeyEvent.VK_ENTER, () -> game.notifyEnter());
 				break;
 		}
         return ret;

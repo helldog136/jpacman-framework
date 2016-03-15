@@ -111,4 +111,6 @@ public abstract class Game implements LevelObserver {
 	public List<Player> getPlayers() {
 		return players;
 	}
+
+	public void notifyEnter() {}
 }
